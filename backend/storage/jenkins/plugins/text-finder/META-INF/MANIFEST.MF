@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: basil
+Build-Jdk: 1.8.0_252
+Extension-Name: text-finder
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: text-finder
+Implementation-Version: 1.15
+Group-Id: org.jenkins-ci.plugins
+Short-Name: text-finder
+Long-Name: Text Finder
+Url: https://github.com/jenkinsci/text-finder-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.15
+Hudson-Version: 2.164.3
+Jenkins-Version: 2.164.3
+Plugin-Developers: Kohsuke Kawaguchi:kohsuke:,Santiago Pericas-Geertse
+ n::,Basil Crow:basil:
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/text-finder-plugin
+

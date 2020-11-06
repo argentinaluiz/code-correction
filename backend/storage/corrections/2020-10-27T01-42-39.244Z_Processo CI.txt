@@ -1,0 +1,178 @@
+{"github_link":"https://github.com/janderfrancisco/laravel_docker","branch":"master","laravel_folder":"."}
+Machine has been successfully cloned as "Alpine 3 Clone - 2020-10-27T01-42-39.244Z"
+Started
+Resume disabled by user, switching to high-performance, low-durability mode.
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/build/test
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] ansiColor
+[Pipeline] {
+
+[Pipeline] stage
+[Pipeline] { (Check CI)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: https://api.github.com/repos/janderfrancisco/laravel_docker/commits/master/check-runs
+Sending request to url: https://api.github.com/repos/janderfrancisco/laravel_docker/commits/master/check-runs
+Response Code: HTTP/1.1 200 OK
+Success code from [100‥399]
+[Pipeline] readJSON
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: https://api.github.com/repos/janderfrancisco/laravel_docker/pulls?state=closed&amp;direction=desc
+Sending request to url: https://api.github.com/repos/janderfrancisco/laravel_docker/pulls?state=closed&amp;direction=desc
+Response Code: HTTP/1.1 200 OK
+Success code from [100‥399]
+[Pipeline] readJSON
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Git Clone)
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/janderfrancisco/laravel_docker
+ > git init /tmp/build/test # timeout=10
+Fetching upstream changes from https://github.com/janderfrancisco/laravel_docker
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/janderfrancisco/laravel_docker +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/janderfrancisco/laravel_docker # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision f3a6a74d7814bd30130f8f0287ae98f7f4c5ef53 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f f3a6a74d7814bd30130f8f0287ae98f7f4c5ef53 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master f3a6a74d7814bd30130f8f0287ae98f7f4c5ef53 # timeout=10
+Commit message: "Merge pull request #3 from janderfrancisco/develop"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .docker/dbdata)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check vendor)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .env.example and .env)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Clean containers)
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=1
++ [ 1 -gt 1 ]
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check image files)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] readFile
+[Pipeline] sh
++ docker run -d docker/janderfrancisco
+Unable to find image 'docker/janderfrancisco:latest' locally
+docker: Error response from daemon: pull access denied for docker/janderfrancisco, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Compose Build)
+Stage "Docker Compose Build" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test port 8000)
+Stage "Test port 8000" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Show welcome content)
+Stage "Show welcome content" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check migrations)
+Stage "Check migrations" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] sh
++ docker-compose logs
+Attaching to 
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=1
++ [ 1 -gt 1 ]
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 125
+Finished: FAILURE

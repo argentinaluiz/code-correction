@@ -1,0 +1,1 @@
+docker run --name jenkins-runner --rm --env JAVA_OPTS=-Dhudson.model.ParametersAction.keepUndefinedParameters=true -v /tmp/workspace:/workspace -v /tmp/jenkins/plugins:/tmp/jenkins/plugins -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/build:/tmp/build argentinaluiz/jenkins-runner

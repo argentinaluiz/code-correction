@@ -1,0 +1,777 @@
+{"github_link":"https://github.com/ch4uz/laravel","branch":"master","laravel_folder":"."}
+Machine has been successfully cloned as "Alpine 3 Clone - 2020-10-23T16-22-51.153Z"
+Started
+Resume disabled by user, switching to high-performance, low-durability mode.
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/build/test
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] ansiColor
+[Pipeline] {
+
+[Pipeline] stage
+[Pipeline] { (Git Clone)
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/ch4uz/laravel
+ > git init /tmp/build/test # timeout=10
+Fetching upstream changes from https://github.com/ch4uz/laravel
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/ch4uz/laravel +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/ch4uz/laravel # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 37ec9af9621251031e8674274371e39d4373001b (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 37ec9af9621251031e8674274371e39d4373001b # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master 37ec9af9621251031e8674274371e39d4373001b # timeout=10
+Commit message: "removed .docker/dbdata"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .docker/dbdata)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check vendor)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .env.example and .env)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Clean containers)
+[Pipeline] sh
++ docker ps -a
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS               NAMES
+f4c8860a2a3f        argentinaluiz/jenkins-runner   "/app/bin/jenkinsfil…"   48 seconds ago      Up 48 seconds                           jenkins-runner
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=1
++ [ 1 -gt 1 ]
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check image files)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] readFile
+[Pipeline] sh
++ docker run -d ch4uxx/laravel
+Unable to find image 'ch4uxx/laravel:latest' locally
+latest: Pulling from ch4uxx/laravel
+e7c96db7181b: Pulling fs layer
+7270d632124c: Pulling fs layer
+2ccb07e9b7f7: Pulling fs layer
+112aa0ae7f66: Pulling fs layer
+447c10ce58af: Pulling fs layer
+290595a2eede: Pulling fs layer
+17b350aaf1c1: Pulling fs layer
+cfab03b9f728: Pulling fs layer
+6aad12fa76f6: Pulling fs layer
+fd9c23956976: Pulling fs layer
+08c1a1b7281e: Pulling fs layer
+8f88878d53ac: Pulling fs layer
+4085cabedb9c: Pulling fs layer
+3c6bee54cb7b: Pulling fs layer
+fc7316ae43a9: Pulling fs layer
+5d07226c2aa5: Pulling fs layer
+dd79152aee12: Pulling fs layer
+d8a6eb097b63: Pulling fs layer
+6734511180b3: Pulling fs layer
+112aa0ae7f66: Waiting
+447c10ce58af: Waiting
+290595a2eede: Waiting
+17b350aaf1c1: Waiting
+cfab03b9f728: Waiting
+6aad12fa76f6: Waiting
+fd9c23956976: Waiting
+08c1a1b7281e: Waiting
+8f88878d53ac: Waiting
+4085cabedb9c: Waiting
+3c6bee54cb7b: Waiting
+fc7316ae43a9: Waiting
+5d07226c2aa5: Waiting
+dd79152aee12: Waiting
+d8a6eb097b63: Waiting
+6734511180b3: Waiting
+2ccb07e9b7f7: Verifying Checksum
+2ccb07e9b7f7: Download complete
+e7c96db7181b: Verifying Checksum
+e7c96db7181b: Download complete
+7270d632124c: Verifying Checksum
+7270d632124c: Download complete
+e7c96db7181b: Pull complete
+112aa0ae7f66: Verifying Checksum
+112aa0ae7f66: Download complete
+7270d632124c: Pull complete
+2ccb07e9b7f7: Pull complete
+112aa0ae7f66: Pull complete
+290595a2eede: Verifying Checksum
+290595a2eede: Download complete
+cfab03b9f728: Verifying Checksum
+cfab03b9f728: Download complete
+447c10ce58af: Verifying Checksum
+447c10ce58af: Download complete
+447c10ce58af: Pull complete
+6aad12fa76f6: Verifying Checksum
+6aad12fa76f6: Download complete
+290595a2eede: Pull complete
+fd9c23956976: Verifying Checksum
+fd9c23956976: Download complete
+8f88878d53ac: Verifying Checksum
+8f88878d53ac: Download complete
+17b350aaf1c1: Verifying Checksum
+17b350aaf1c1: Download complete
+17b350aaf1c1: Pull complete
+08c1a1b7281e: Verifying Checksum
+08c1a1b7281e: Download complete
+cfab03b9f728: Pull complete
+6aad12fa76f6: Pull complete
+fd9c23956976: Pull complete
+3c6bee54cb7b: Verifying Checksum
+3c6bee54cb7b: Download complete
+08c1a1b7281e: Pull complete
+4085cabedb9c: Verifying Checksum
+4085cabedb9c: Download complete
+8f88878d53ac: Pull complete
+4085cabedb9c: Pull complete
+3c6bee54cb7b: Pull complete
+fc7316ae43a9: Verifying Checksum
+fc7316ae43a9: Download complete
+fc7316ae43a9: Pull complete
+5d07226c2aa5: Verifying Checksum
+5d07226c2aa5: Download complete
+dd79152aee12: Verifying Checksum
+dd79152aee12: Download complete
+5d07226c2aa5: Pull complete
+dd79152aee12: Pull complete
+d8a6eb097b63: Verifying Checksum
+d8a6eb097b63: Download complete
+d8a6eb097b63: Pull complete
+6734511180b3: Verifying Checksum
+6734511180b3: Download complete
+6734511180b3: Pull complete
+Digest: sha256:d7a595e24553c8ec8b2ee0d9012b2ee3f4ed5b947cc2003c579819ba5a5c8864
+Status: Downloaded newer image for ch4uxx/laravel:latest
+[Pipeline] echo
+docker exec 42f36f4bb0050324eb942c729758bafc7db92f4b1d1be9b83880c5efc3e93062 ls -alR
+[Pipeline] sh
++ docker exec 42f36f4bb0050324eb942c729758bafc7db92f4b1d1be9b83880c5efc3e93062 [ -f ./var/www.env ]
+[Pipeline] step
+[Text Finder] Searching console output...
+[Text Finder] Finished searching for pattern '\.env exists in image' in console output.
+[Text Finder] Setting build result to 'FAILURE'.
+[Pipeline] findText
+[Text Finder] Searching console output...
+[Text Finder] Finished searching for pattern 'vendor exists in image' in console output.
+[Text Finder] Setting build result to 'FAILURE'.
+[Pipeline] sh
++ docker stop 42f36f4bb0050324eb942c729758bafc7db92f4b1d1be9b83880c5efc3e93062
+42f36f4bb0050324eb942c729758bafc7db92f4b1d1be9b83880c5efc3e93062
++ docker rm 42f36f4bb0050324eb942c729758bafc7db92f4b1d1be9b83880c5efc3e93062
+42f36f4bb0050324eb942c729758bafc7db92f4b1d1be9b83880c5efc3e93062
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Compose Build)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ chmod +x .docker/entrypoint.sh
+chmod: cannot access '.docker/entrypoint.sh': No such file or directory
+[Pipeline] sh
++ chmod +x .docker/app/entrypoint.sh
+chmod: cannot access '.docker/app/entrypoint.sh': No such file or directory
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] sh
++ docker-compose up -d --build
+Creating network "test_app-network" with driver "bridge"
+Building app
+Step 1/13 : FROM php:7.3.6-fpm-alpine3.9
+7.3.6-fpm-alpine3.9: Pulling from library/php
+Digest: sha256:e985eac009df5603958334320c4d2271ddfbd72ef0c593580f59dd8c9c71aaa0
+Status: Downloaded newer image for php:7.3.6-fpm-alpine3.9
+ ---> 7b1e87c5c636
+Step 2/13 : RUN apk add bash mysql-client
+ ---> Running in 2b3f35449242
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+(1/7) Installing readline (7.0.003-r1)
+(2/7) Installing bash (4.4.19-r1)
+Executing bash-4.4.19-r1.post-install
+(3/7) Installing mariadb-common (10.3.25-r0)
+(4/7) Installing libgcc (8.3.0-r0)
+(5/7) Installing libstdc++ (8.3.0-r0)
+(6/7) Installing mariadb-client (10.3.25-r0)
+(7/7) Installing mysql-client (10.3.25-r0)
+Executing busybox-1.29.3-r10.trigger
+OK: 51 MiB in 37 packages
+Removing intermediate container 2b3f35449242
+ ---> 4c0f7c446d73
+Step 3/13 : RUN docker-php-ext-install pdo pdo_mysql
+ ---> Running in 3fa1384289e3
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+(1/25) Upgrading musl (1.1.20-r4 -> 1.1.20-r5)
+(2/25) Installing m4 (1.4.18-r1)
+(3/25) Installing libbz2 (1.0.6-r7)
+(4/25) Installing perl (5.26.3-r1)
+(5/25) Installing autoconf (2.69-r2)
+(6/25) Installing pkgconf (1.6.0-r0)
+(7/25) Installing dpkg-dev (1.19.2-r0)
+(8/25) Installing dpkg (1.19.2-r0)
+(9/25) Installing libmagic (5.36-r1)
+(10/25) Installing file (5.36-r1)
+(11/25) Installing binutils (2.31.1-r2)
+(12/25) Installing gmp (6.1.2-r1)
+(13/25) Installing isl (0.18-r0)
+(14/25) Installing libgomp (8.3.0-r0)
+(15/25) Installing libatomic (8.3.0-r0)
+(16/25) Installing mpfr3 (3.1.5-r1)
+(17/25) Installing mpc1 (1.0.3-r1)
+(18/25) Installing gcc (8.3.0-r0)
+(19/25) Installing musl-dev (1.1.20-r5)
+(20/25) Installing libc-dev (0.7.1-r0)
+(21/25) Installing g++ (8.3.0-r0)
+(22/25) Installing make (4.2.1-r2)
+(23/25) Installing re2c (1.1.1-r0)
+(24/25) Installing .phpize-deps (0)
+(25/25) Upgrading musl-utils (1.1.20-r4 -> 1.1.20-r5)
+Executing busybox-1.29.3-r10.trigger
+OK: 250 MiB in 60 packages
+Configuring for:
+PHP Api Version:         20180731
+Zend Module Api No:      20180731
+Zend Extension Api No:   320180731
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ISO C89... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking whether cc understands -c and -o together... yes
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20180731
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for re2c... re2c
+checking for re2c version... 1.1.1 (ok)
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking whether to enable PDO support... yes, shared
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: creating ./config.status
+config.status: creating config.h
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo/pdo.c -o pdo.lo 
+mkdir .libs
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo/pdo.c  -fPIC -DPIC -o .libs/pdo.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo/pdo_dbh.c -o pdo_dbh.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo/pdo_dbh.c  -fPIC -DPIC -o .libs/pdo_dbh.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo/pdo_stmt.c -o pdo_stmt.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo/pdo_stmt.c  -fPIC -DPIC -o .libs/pdo_stmt.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo/pdo_sql_parser.c -o pdo_sql_parser.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo/pdo_sql_parser.c  -fPIC -DPIC -o .libs/pdo_sql_parser.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo/pdo_sqlstate.c -o pdo_sqlstate.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo/pdo_sqlstate.c  -fPIC -DPIC -o .libs/pdo_sqlstate.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2  -Wl,-O1 -Wl,--hash-style=both -pie  -o pdo.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/pdo/modules  pdo.lo pdo_dbh.lo pdo_stmt.lo pdo_sql_parser.lo pdo_sqlstate.lo 
+cc -shared  .libs/pdo.o .libs/pdo_dbh.o .libs/pdo_stmt.o .libs/pdo_sql_parser.o .libs/pdo_sqlstate.o   -Wl,-O1 -Wl,--hash-style=both -Wl,-soname -Wl,pdo.so -o .libs/pdo.so
+creating pdo.la
+(cd .libs && rm -f pdo.la && ln -s ../pdo.la pdo.la)
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=install cp ./pdo.la /usr/src/php/ext/pdo/modules
+cp ./.libs/pdo.so /usr/src/php/ext/pdo/modules/pdo.so
+cp ./.libs/pdo.lai /usr/src/php/ext/pdo/modules/pdo.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/pdo/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/pdo/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20180731/
+Installing header files:          /usr/local/include/php/
+Installing PDO headers:           /usr/local/include/php/ext/pdo/
+[91m
+[0m[91mwarning: pdo (pdo.so) is already loaded!
+[0m[91m
+[0mfind . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+Configuring for:
+PHP Api Version:         20180731
+Zend Module Api No:      20180731
+Zend Extension Api No:   320180731
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ISO C89... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking whether cc understands -c and -o together... yes
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20180731
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for re2c... re2c
+checking for re2c version... 1.1.1 (ok)
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking for MySQL support for PDO... yes, shared
+checking for the location of libz... no
+checking for MySQL UNIX socket location... 
+checking for PDO includes... checking for PDO includes... /usr/local/include/php/ext
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: creating ./config.status
+config.status: creating config.h
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo 
+mkdir .libs
+ cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo_mysql/mysql_driver.c -o mysql_driver.lo 
+ cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo_mysql/mysql_driver.c  -fPIC -DPIC -o .libs/mysql_driver.o
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2   -c /usr/src/php/ext/pdo_mysql/mysql_statement.c -o mysql_statement.lo 
+ cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -c /usr/src/php/ext/pdo_mysql/mysql_statement.c  -fPIC -DPIC -o .libs/mysql_statement.o
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2  -Wl,-O1 -Wl,--hash-style=both -pie  -o pdo_mysql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/pdo_mysql/modules  pdo_mysql.lo mysql_driver.lo mysql_statement.lo 
+cc -shared  .libs/pdo_mysql.o .libs/mysql_driver.o .libs/mysql_statement.o   -Wl,-O1 -Wl,--hash-style=both -Wl,-soname -Wl,pdo_mysql.so -o .libs/pdo_mysql.so
+creating pdo_mysql.la
+(cd .libs && rm -f pdo_mysql.la && ln -s ../pdo_mysql.la pdo_mysql.la)
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=install cp ./pdo_mysql.la /usr/src/php/ext/pdo_mysql/modules
+cp ./.libs/pdo_mysql.so /usr/src/php/ext/pdo_mysql/modules/pdo_mysql.so
+cp ./.libs/pdo_mysql.lai /usr/src/php/ext/pdo_mysql/modules/pdo_mysql.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/pdo_mysql/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/pdo_mysql/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20180731/
+find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+(1/23) Purging .phpize-deps (0)
+(2/23) Purging autoconf (2.69-r2)
+(3/23) Purging m4 (1.4.18-r1)
+(4/23) Purging dpkg-dev (1.19.2-r0)
+(5/23) Purging perl (5.26.3-r1)
+(6/23) Purging dpkg (1.19.2-r0)
+(7/23) Purging file (5.36-r1)
+(8/23) Purging g++ (8.3.0-r0)
+(9/23) Purging gcc (8.3.0-r0)
+(10/23) Purging binutils (2.31.1-r2)
+(11/23) Purging libatomic (8.3.0-r0)
+(12/23) Purging libgomp (8.3.0-r0)
+(13/23) Purging libc-dev (0.7.1-r0)
+(14/23) Purging musl-dev (1.1.20-r5)
+(15/23) Purging make (4.2.1-r2)
+(16/23) Purging pkgconf (1.6.0-r0)
+(17/23) Purging re2c (1.1.1-r0)
+(18/23) Purging libbz2 (1.0.6-r7)
+(19/23) Purging libmagic (5.36-r1)
+(20/23) Purging mpc1 (1.0.3-r1)
+(21/23) Purging mpfr3 (3.1.5-r1)
+(22/23) Purging isl (0.18-r0)
+(23/23) Purging gmp (6.1.2-r1)
+Executing busybox-1.29.3-r10.trigger
+OK: 51 MiB in 37 packages
+Removing intermediate container 3fa1384289e3
+ ---> 93c59b0e0cc5
+Step 4/13 : RUN apk add --no-cache shadow
+ ---> Running in 57d2da6ad346
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+(1/2) Installing linux-pam (1.3.0-r0)
+(2/2) Installing shadow (4.5-r2)
+Executing busybox-1.29.3-r10.trigger
+OK: 53 MiB in 39 packages
+Removing intermediate container 57d2da6ad346
+ ---> 3ad8579edd4d
+Step 5/13 : WORKDIR /var/www
+ ---> Running in 114533ff6265
+Removing intermediate container 114533ff6265
+ ---> 391b258c3343
+Step 6/13 : RUN rm -rf /var/www/html
+ ---> Running in 60f298310c32
+Removing intermediate container 60f298310c32
+ ---> d5d086a28d93
+Step 7/13 : RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
+ ---> Running in ec9e3e4fb96a
+All settings correct for using Composer
+Downloading...
+
+Composer (version 1.10.15) successfully installed to: /usr/local/composer.phar
+Use it: php /usr/local/composer.phar
+
+Removing intermediate container ec9e3e4fb96a
+ ---> 407a67406901
+Step 8/13 : RUN chown -R www-data:www-data /var/www
+ ---> Running in 56c1200c3212
+Removing intermediate container 56c1200c3212
+ ---> 2ee482ba4d13
+Step 9/13 : RUN ln -s public html
+ ---> Running in 1d660011648f
+Removing intermediate container 1d660011648f
+ ---> 469b527e11f1
+Step 10/13 : RUN usermod -u 1000 www-data
+ ---> Running in f99bfa98d0b5
+Removing intermediate container f99bfa98d0b5
+ ---> 85d40bf9f2e2
+Step 11/13 : USER www-data
+ ---> Running in 9b25456b7a63
+Removing intermediate container 9b25456b7a63
+ ---> 49852cb95086
+Step 12/13 : EXPOSE 9000
+ ---> Running in 69c3b529de73
+Removing intermediate container 69c3b529de73
+ ---> d65ef62ac02f
+Step 13/13 : ENTRYPOINT ["php-fpm"]
+ ---> Running in 1a357274ff13
+Removing intermediate container 1a357274ff13
+ ---> 6e4814702951
+
+Successfully built 6e4814702951
+Successfully tagged test_app:latest
+Building nginx
+Step 1/3 : FROM nginx:1.15.0-alpine
+1.15.0-alpine: Pulling from library/nginx
+Digest: sha256:4a85273d1e403fbf676960c0ad41b673c7b034204a48cb32779fbb2c18e3839d
+Status: Downloaded newer image for nginx:1.15.0-alpine
+ ---> bc7fdec94612
+Step 2/3 : RUN rm /etc/nginx/conf.d/default.conf
+ ---> Running in fe145b2f5730
+Removing intermediate container fe145b2f5730
+ ---> 8ad96d8ca773
+Step 3/3 : COPY ./nginx.conf /etc/nginx/conf.d
+ ---> d09a690f91f8
+
+Successfully built d09a690f91f8
+Successfully tagged test_nginx:latest
+Pulling redis (redis:alpine)...
+alpine: Pulling from library/redis
+Digest: sha256:cac5bbb2a6dd455e503951d296e11966060bdc6e3be1eadc5551adde58052700
+Status: Downloaded newer image for redis:alpine
+Building db
+Step 1/2 : FROM mysql:5.7
+5.7: Pulling from library/mysql
+Digest: sha256:4d2b34e99c14edb99cdd95ddad4d9aa7ea3f2c4405ff0c3509a29dc40bcb10ef
+Status: Downloaded newer image for mysql:5.7
+ ---> 1b12f2e9257b
+Step 2/2 : RUN usermod -u 1000 mysql
+ ---> Running in 0fbaeb473772
+Removing intermediate container 0fbaeb473772
+ ---> 99cda54942ae
+
+Successfully built 99cda54942ae
+Successfully tagged test_db:latest
+Creating nginx ... 
+Creating app   ... 
+Creating db    ... 
+Creating test_redis_1 ... 
+[2A[2KCreating db           ... [32mdone[0m[2B[4A[2KCreating nginx        ... [32mdone[0m[4B[3A[2KCreating app          ... [32mdone[0m[3B[1A[2KCreating test_redis_1 ... [32mdone[0m[1B
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Prepare Laravel)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] sh
++ docker-compose exec -T app cp .env.example .env
+cp: can't stat '.env.example': No such file or directory
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test port 8000)
+Stage "Test port 8000" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Show welcome content)
+Stage "Show welcome content" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check migrations)
+Stage "Check migrations" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] sh
++ docker-compose logs
+Attaching to test_redis_1, app, db, nginx
+[36mapp      |[0m [23-Oct-2020 16:29:05] NOTICE: [pool www] 'user' directive is ignored when FPM is not running as root
+[36mapp      |[0m [23-Oct-2020 16:29:05] NOTICE: [pool www] 'user' directive is ignored when FPM is not running as root
+[36mapp      |[0m [23-Oct-2020 16:29:05] NOTICE: [pool www] 'group' directive is ignored when FPM is not running as root
+[36mapp      |[0m [23-Oct-2020 16:29:05] NOTICE: [pool www] 'group' directive is ignored when FPM is not running as root
+[36mapp      |[0m [23-Oct-2020 16:29:05] NOTICE: fpm is running, pid 1
+[36mapp      |[0m [23-Oct-2020 16:29:05] NOTICE: ready to handle connections
+[33mdb       |[0m 2020-10-23 16:29:04+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.32-1debian10 started.
+[33mdb       |[0m 2020-10-23 16:29:05+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+[33mdb       |[0m 2020-10-23 16:29:05+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.32-1debian10 started.
+[33mdb       |[0m 2020-10-23 16:29:05+00:00 [Note] [Entrypoint]: Initializing database files
+[33mdb       |[0m 2020-10-23T16:29:05.275991Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33mdb       |[0m 2020-10-23T16:29:05.645237Z 0 [Warning] InnoDB: New log files created, LSN=45790
+[33mdb       |[0m 2020-10-23T16:29:05.732630Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+[33mdb       |[0m 2020-10-23T16:29:05.809759Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: de69acd5-154c-11eb-985e-0242ac120002.
+[33mdb       |[0m 2020-10-23T16:29:05.819022Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+[33mdb       |[0m 2020-10-23T16:29:06.223610Z 0 [Warning] CA certificate ca.pem is self signed.
+[33mdb       |[0m 2020-10-23T16:29:06.348055Z 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+[33mdb       |[0m 2020-10-23 16:29:11+00:00 [Note] [Entrypoint]: Database files initialized
+[33mdb       |[0m 2020-10-23 16:29:11+00:00 [Note] [Entrypoint]: Starting temporary server
+[33mdb       |[0m 2020-10-23 16:29:11+00:00 [Note] [Entrypoint]: Waiting for server startup
+[35mredis_1  |[0m 1:C 23 Oct 2020 16:29:05.464 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[35mredis_1  |[0m 1:C 23 Oct 2020 16:29:05.464 # Redis version=6.0.8, bits=64, commit=00000000, modified=0, pid=1, just started
+[35mredis_1  |[0m 1:C 23 Oct 2020 16:29:05.464 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[35mredis_1  |[0m 1:M 23 Oct 2020 16:29:05.466 * Running mode=standalone, port=6379.
+[35mredis_1  |[0m 1:M 23 Oct 2020 16:29:05.466 # Server initialized
+[35mredis_1  |[0m 1:M 23 Oct 2020 16:29:05.466 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[35mredis_1  |[0m 1:M 23 Oct 2020 16:29:05.466 * Ready to accept connections
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=5
++ [ 5 -gt 1 ]
++ docker ps -a
++ grep -v jenkins
++ awk NR>1 {print $1}
++ containers=900dc685375a
+0f1a3bfc45e4
+d934ea28816c
+f889b1594f9b
++ docker stop 900dc685375a 0f1a3bfc45e4 d934ea28816c f889b1594f9b
+900dc685375a
+0f1a3bfc45e4
+d934ea28816c
+f889b1594f9b
++ docker rm 900dc685375a 0f1a3bfc45e4 d934ea28816c f889b1594f9b
+900dc685375a
+0f1a3bfc45e4
+d934ea28816c
+f889b1594f9b
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE

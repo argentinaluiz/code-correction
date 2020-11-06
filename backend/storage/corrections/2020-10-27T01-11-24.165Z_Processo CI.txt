@@ -1,0 +1,2 @@
+{"github_link":"https://github.com/janderfrancisco/laravel_docker","branch":"master","laravel_folder":"."}
+Machine has been successfully cloned as "Alpine 3 Clone - 2020-10-27T01-11-24.165Z"

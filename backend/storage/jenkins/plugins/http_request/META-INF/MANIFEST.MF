@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: janario
+Build-Jdk: 1.8.0_242
+Extension-Name: http_request
+Specification-Title: This plugin sends a http request to an url with s
+ ome parameters.
+ 		See the release notes for changes and compatibility https://github.
+ com/jenkinsci/http-request-plugin/releases
+Implementation-Title: http_request
+Implementation-Version: 1.8.26
+Group-Id: org.jenkins-ci.plugins
+Short-Name: http_request
+Long-Name: HTTP Request Plugin
+Url: https://wiki.jenkins.io/display/JENKINS/HTTP+Request+Plugin
+Compatible-Since-Version: 1.8.17
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.8.26
+Hudson-Version: 2.60.3
+Jenkins-Version: 2.60.3
+Plugin-Dependencies: workflow-step-api:1.10;resolution:=optional,apach
+ e-httpcomponents-client-4-api:4.5.3-2.0,credentials:2.1.1,script-secu
+ rity:1.17
+Plugin-Developers: Janario Oliveira:janario:janario.oliveira@gmail.com
+Plugin-License-Name: The MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/http-request-plugin
+

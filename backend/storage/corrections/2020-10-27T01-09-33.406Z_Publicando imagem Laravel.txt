@@ -1,0 +1,2 @@
+{"github_link":"https://github.com/wbagestao/laravel","branch":"main","laravel_folder":"."}
+Machine has been successfully cloned as "Alpine 3 Clone - 2020-10-27T01-09-33.406Z"

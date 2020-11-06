@@ -1,0 +1,195 @@
+pipeline {
+    agent any
+    options {
+        ansiColor('xterm')
+    }
+    parameters {
+        string(name: 'github_link', defaultValue: '', description: 'Link do repositório Git')
+        string(name: 'branch', defaultValue: 'master', description: 'Branch')
+        string(name: 'laravel_folder', defaultValue: '.', description: 'Laravel Folder')
+    }
+
+    stages {
+        
+        stage('Git Clone') {
+            steps {
+                step([$class: 'WsCleanup'])
+                git url: params.github_link, branch: params.branch
+            }
+        }
+        
+        // stage('Chown project') {
+        //     steps {
+        //         script{
+        //         sh "chown -R jenkins:jenkins ."
+        //         }
+        //     }
+        // }
+        
+        stage('Check .docker/dbdata'){
+            steps{
+                dir(params.laravel_folder){
+                script {
+                    if(fileExists('.docker/dbdata')){
+                     currentBuild.result = 'FAILURE'
+                     throw new Exception('.docker/dbdata added in Git')
+                    }
+                }
+                }
+            }
+        }
+        
+        stage('Check vendor'){
+            steps{
+                dir(params.laravel_folder){
+                script {
+                    if(fileExists('vendor')){
+                     currentBuild.result = 'FAILURE'
+                     throw new Exception('vendor added in Git')
+                    }
+                }
+                }
+            }
+        }
+        
+        stage('Check .env.example and .env'){
+            steps{
+                dir(params.laravel_folder){
+                script {
+                    if(!fileExists('.env.example')){
+                     currentBuild.result = 'FAILURE'
+                     throw new Exception('.env.example not found')
+                    }
+                    
+                    if(fileExists('.env')){
+                     currentBuild.result = 'FAILURE'
+                     throw new Exception('.env added in Git')
+                    }
+                }
+                }
+            }
+        }
+        
+        stage('Clean containers'){
+            steps {
+                sh 'docker ps -a'
+                sh ''' 
+                    num_containers=$(docker ps -a -q | wc -l)
+                    if [ $num_containers -gt 1 ]; then
+                        containers=\$(docker ps -a | grep -v 'jenkins' | awk 'NR>1 {print \$1}') 
+                        docker stop $containers
+                        docker rm $containers
+                    fi
+                '''
+            }
+        }
+        
+        stage('Check image files'){
+            steps {
+                script{
+                    def data = readFile(file: './README.md')
+                    def links = data.findAll("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]")
+                    def docker_hub_link=links.findAll{ it.contains('hub.docker.com') }[0]
+                    def (protocol, nothing, uri,r, owner, image) = docker_hub_link.split('/')
+                    def container = sh(script: "docker run -d ${owner}/${image}", returnStdout: true).replace("\n", "")
+                    println("docker exec ${container} ls -alR")
+                    try{
+                        sh "docker exec ${container} [ -f './var/www.env' ] && echo '.env exists in image'"
+                        sh "docker exec ${container} [ -d './var/www/vendor' ] && echo 'vendor exists in image'"
+                    }catch(Exception e){
+                        
+                    }
+                    findText(textFinders: [textFinder(regexp: /\.env exists in image/, alsoCheckConsoleOutput: true,changeCondition: 'MATCH_NOT_FOUND',buildResult: 'FAILURE')])
+                    findText(textFinders: [textFinder(regexp: /vendor exists in image/, alsoCheckConsoleOutput: true,changeCondition: 'MATCH_NOT_FOUND',buildResult: 'FAILURE')])
+                    sh "docker stop ${container} && docker rm ${container}"
+                }
+            }
+        }
+        
+        stage('Docker Compose Build') {
+            steps {
+                dir(params.laravel_folder){
+                script {
+                    try{
+                        sh "chmod +x .docker/entrypoint.sh"
+                    }catch(Exception e){}
+                    try{
+                        sh "chmod +x .docker/app/entrypoint.sh"
+                    }catch(Exception e){}
+                        
+                    }
+                    sh "docker-compose up -d --build"
+                }
+            }
+        }
+        
+        stage('Prepare Laravel') {
+            steps {
+                dir(params.laravel_folder){
+                sh '''
+                docker-compose exec -u root -T app cp .env.example .env
+                docker-compose exec -T app composer install
+                docker-compose exec -u root -T app php artisan key:generate
+                docker-compose exec -T app php artisan migrate
+                '''
+                }
+            }
+        }
+        
+        stage('Test port 8000'){
+            steps {
+                timeout(1 * 6) {
+                    waitUntil(quiet: true) {
+                        script {
+                            try{
+                                def response = httpRequest "http://host.docker.internal:8000"
+                                if ( response.status == 200) {
+                                    return true
+                                }
+                                return false
+                            }catch(Exception e){
+                                return false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Show welcome content'){
+            steps {
+                script {
+                    def response = httpRequest "http://host.docker.internal:8000"
+                    println(response.content)
+                }
+            }
+        }
+        
+        stage('Check migrations'){
+            steps {
+                dir(params.laravel_folder){
+                script {
+                    sh "docker-compose exec -T app php artisan migrate"
+                    findText(textFinders: [textFinder(regexp: /Nothing to migrate\./, alsoCheckConsoleOutput: true,changeCondition: 'MATCH_NOT_FOUND',buildResult: 'FAILURE')])
+                }
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            dir(params.laravel_folder){
+            sh "docker-compose logs"
+            sh ''' 
+                    num_containers=$(docker ps -a -q | wc -l)
+                    if [ $num_containers -gt 1 ]; then
+                        containers=\$(docker ps -a | grep -v 'jenkins' | awk 'NR>1 {print \$1}') 
+                        docker stop $containers
+                        docker rm $containers
+                    fi
+            '''
+            }
+        }
+    }
+}

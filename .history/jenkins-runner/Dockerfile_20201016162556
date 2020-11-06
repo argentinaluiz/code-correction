@@ -1,0 +1,29 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+RUN apt-get update && \
+    apt-get -y --no-install-recommends install apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg2 \
+      software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+    add-apt-repository \
+     "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+     $(lsb_release -cs) \
+     stable" && \
+    apt-get update && \
+    apt-get -y --no-install-recommends install docker-ce && \
+    apt-get clean || true
+
+RUN curl -k -O -L https://download.docker.com/linux/ubuntu/dists/eoan/pool/stable/amd64/containerd.io_1.2.13-1_amd64.deb && \
+curl -k -O -L https://download.docker.com/linux/ubuntu/dists/eoan/pool/stable/amd64/docker-ce-cli_19.03.8~3-0~ubuntu-eoan_amd64.deb && \
+curl -k -O -L https://download.docker.com/linux/ubuntu/dists/eoan/pool/stable/amd64/docker-ce_19.03.8~3-0~ubuntu-eoan_amd64.deb
+
+RUN apt install ./containerd.io_1.2.13-1_amd64.deb && \
+  apt install ./docker-ce-cli_19.03.8~3-0~ubuntu-eoan_amd64.deb && \
+  apt install ./docker-ce_19.03.8~3-0~ubuntu-eoan_amd64.deb
+
+RUN curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose

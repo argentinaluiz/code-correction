@@ -1,0 +1,165 @@
+{"github_link":"https://github.com/wbagestao/laravel","branch":"main","laravel_folder":"."}
+Machine has been successfully cloned as "Alpine 3 Clone - 2020-10-23T16-53-02.667Z"
+Started
+Resume disabled by user, switching to high-performance, low-durability mode.
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/build/test
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] ansiColor
+[Pipeline] {
+
+[Pipeline] stage
+[Pipeline] { (Git Clone)
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/wbagestao/laravel
+ > git init /tmp/build/test # timeout=10
+Fetching upstream changes from https://github.com/wbagestao/laravel
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/wbagestao/laravel +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/wbagestao/laravel # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 838449b04706632d297215147b196362a436cadb (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 838449b04706632d297215147b196362a436cadb # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main 838449b04706632d297215147b196362a436cadb # timeout=10
+Commit message: "excluindo pasta bddados"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .docker/dbdata)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check vendor)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .env.example and .env)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Clean containers)
+[Pipeline] sh
++ docker ps -a
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS               NAMES
+80bd92aef7b7        argentinaluiz/jenkins-runner   "/app/bin/jenkinsfil…"   47 seconds ago      Up 46 seconds                           jenkins-runner
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=1
++ [ 1 -gt 1 ]
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check image files)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] readFile
+[Pipeline] sh
++ docker run -d docker/carvalhopablo
+Unable to find image 'docker/carvalhopablo:latest' locally
+docker: Error response from daemon: pull access denied for docker/carvalhopablo, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Compose Build)
+Stage "Docker Compose Build" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Prepare Laravel)
+Stage "Prepare Laravel" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test port 8000)
+Stage "Test port 8000" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Show welcome content)
+Stage "Show welcome content" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check migrations)
+Stage "Check migrations" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] sh
++ docker-compose logs
+Attaching to 
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=1
++ [ 1 -gt 1 ]
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 125
+Finished: FAILURE

@@ -1,0 +1,1397 @@
+{"github_link":"https://github.com/gabrielresende06/laravel","branch":"master","laravel_folder":"."}
+Machine has been successfully cloned as "Alpine 3 Clone - 2020-10-23T18-03-25.595Z"
+Started
+Resume disabled by user, switching to high-performance, low-durability mode.
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/build/test
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] ansiColor
+[Pipeline] {
+
+[Pipeline] stage
+[Pipeline] { (Check CI)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: https://api.github.com/repos/gabrielresende06/laravel/commits/master/check-runs
+Sending request to url: https://api.github.com/repos/gabrielresende06/laravel/commits/master/check-runs
+Response Code: HTTP/1.1 200 OK
+Success code from [100‥399]
+[Pipeline] readJSON
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: https://api.github.com/repos/gabrielresende06/laravel/pulls?state=closed&amp;direction=desc
+Sending request to url: https://api.github.com/repos/gabrielresende06/laravel/pulls?state=closed&amp;direction=desc
+Response Code: HTTP/1.1 200 OK
+Success code from [100‥399]
+[Pipeline] readJSON
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: https://api.github.com/repos/gabrielresende06/laravel/commits/854508d7bda1d65cdfaf7a60b636a6b7c8e9be5b/check-runs
+Sending request to url: https://api.github.com/repos/gabrielresende06/laravel/commits/854508d7bda1d65cdfaf7a60b636a6b7c8e9be5b/check-runs
+Response Code: HTTP/1.1 200 OK
+Success code from [100‥399]
+[Pipeline] readJSON
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Git Clone)
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/gabrielresende06/laravel
+ > git init /tmp/build/test # timeout=10
+Fetching upstream changes from https://github.com/gabrielresende06/laravel
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/gabrielresende06/laravel +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/gabrielresende06/laravel # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision af0aabb773ef9fe2fefe9a64853b643568935f61 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f af0aabb773ef9fe2fefe9a64853b643568935f61 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master af0aabb773ef9fe2fefe9a64853b643568935f61 # timeout=10
+Commit message: "adicionando a pasta dbdata no gitignore"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .docker/dbdata)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check vendor)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check .env.example and .env)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] fileExists
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Clean containers)
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=1
++ [ 1 -gt 1 ]
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check image files)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] readFile
+[Pipeline] sh
++ docker run -d gabriel06/laravel
+Unable to find image 'gabriel06/laravel:latest' locally
+latest: Pulling from gabriel06/laravel
+df20fa9351a1: Pulling fs layer
+b358d6dbbdff: Pulling fs layer
+0232d962484c: Pulling fs layer
+0c1d3ac04d2a: Pulling fs layer
+b3732f4f24f8: Pulling fs layer
+fcb8848bd304: Pulling fs layer
+e3ca18042f44: Pulling fs layer
+4fdaa57ecb0d: Pulling fs layer
+f45e8ed5f113: Pulling fs layer
+206bc7d2ac83: Pulling fs layer
+36b2cede7462: Pulling fs layer
+a2f1c555ab50: Pulling fs layer
+d7654074e70a: Pulling fs layer
+8c03aec12a91: Pulling fs layer
+fb4553417679: Pulling fs layer
+0c1d3ac04d2a: Waiting
+b3732f4f24f8: Waiting
+fcb8848bd304: Waiting
+e3ca18042f44: Waiting
+4fdaa57ecb0d: Waiting
+f45e8ed5f113: Waiting
+206bc7d2ac83: Waiting
+36b2cede7462: Waiting
+a2f1c555ab50: Waiting
+d7654074e70a: Waiting
+8c03aec12a91: Waiting
+fb4553417679: Waiting
+0232d962484c: Verifying Checksum
+0232d962484c: Download complete
+b358d6dbbdff: Verifying Checksum
+b358d6dbbdff: Download complete
+df20fa9351a1: Verifying Checksum
+df20fa9351a1: Download complete
+df20fa9351a1: Pull complete
+b358d6dbbdff: Pull complete
+0c1d3ac04d2a: Verifying Checksum
+0c1d3ac04d2a: Download complete
+0232d962484c: Pull complete
+fcb8848bd304: Verifying Checksum
+fcb8848bd304: Download complete
+b3732f4f24f8: Verifying Checksum
+b3732f4f24f8: Download complete
+4fdaa57ecb0d: Verifying Checksum
+4fdaa57ecb0d: Download complete
+f45e8ed5f113: Verifying Checksum
+f45e8ed5f113: Download complete
+e3ca18042f44: Verifying Checksum
+e3ca18042f44: Download complete
+206bc7d2ac83: Verifying Checksum
+206bc7d2ac83: Download complete
+0c1d3ac04d2a: Pull complete
+b3732f4f24f8: Pull complete
+fcb8848bd304: Pull complete
+e3ca18042f44: Pull complete
+4fdaa57ecb0d: Pull complete
+a2f1c555ab50: Verifying Checksum
+a2f1c555ab50: Download complete
+d7654074e70a: Verifying Checksum
+d7654074e70a: Download complete
+f45e8ed5f113: Pull complete
+206bc7d2ac83: Pull complete
+36b2cede7462: Verifying Checksum
+36b2cede7462: Download complete
+36b2cede7462: Pull complete
+a2f1c555ab50: Pull complete
+8c03aec12a91: Verifying Checksum
+8c03aec12a91: Download complete
+d7654074e70a: Pull complete
+fb4553417679: Verifying Checksum
+fb4553417679: Download complete
+8c03aec12a91: Pull complete
+fb4553417679: Pull complete
+Digest: sha256:0726a20eabcd168af174f7d6bc10c723b8f6361f3af274f479d871bdf89f4313
+Status: Downloaded newer image for gabriel06/laravel:latest
+[Pipeline] echo
+docker exec 131d6edee96ce7a8ce1c0675ced83af8fd96c726dc2d8bf0e4ae1f755bdd43e3 ls -alR
+[Pipeline] sh
++ docker exec 131d6edee96ce7a8ce1c0675ced83af8fd96c726dc2d8bf0e4ae1f755bdd43e3 [ -f ./var/www.env ]
+[Pipeline] step
+[Text Finder] Searching console output...
+[Text Finder] Finished searching for pattern '\.env exists in image' in console output.
+[Text Finder] Setting build result to 'FAILURE'.
+[Pipeline] findText
+[Text Finder] Searching console output...
+[Text Finder] Finished searching for pattern 'vendor exists in image' in console output.
+[Text Finder] Setting build result to 'FAILURE'.
+[Pipeline] sh
++ docker stop 131d6edee96ce7a8ce1c0675ced83af8fd96c726dc2d8bf0e4ae1f755bdd43e3
+131d6edee96ce7a8ce1c0675ced83af8fd96c726dc2d8bf0e4ae1f755bdd43e3
++ docker rm 131d6edee96ce7a8ce1c0675ced83af8fd96c726dc2d8bf0e4ae1f755bdd43e3
+131d6edee96ce7a8ce1c0675ced83af8fd96c726dc2d8bf0e4ae1f755bdd43e3
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Compose Build)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ chmod +x .docker/entrypoint.sh
+[Pipeline] sh
++ chmod +x .docker/app/entrypoint.sh
+chmod: cannot access '.docker/app/entrypoint.sh': No such file or directory
+[Pipeline] sh
++ docker-compose up -d --build
+Creating network "test_app-network" with driver "bridge"
+Pulling redis (redis:alpine)...
+alpine: Pulling from library/redis
+Digest: sha256:cac5bbb2a6dd455e503951d296e11966060bdc6e3be1eadc5551adde58052700
+Status: Downloaded newer image for redis:alpine
+Pulling db (mysql:5.7)...
+5.7: Pulling from library/mysql
+Digest: sha256:4d2b34e99c14edb99cdd95ddad4d9aa7ea3f2c4405ff0c3509a29dc40bcb10ef
+Status: Downloaded newer image for mysql:5.7
+Building app
+Step 1/11 : FROM php:7.4-fpm-alpine3.12
+7.4-fpm-alpine3.12: Pulling from library/php
+Digest: sha256:8717f3679c986a16f9c12e559ab14e7cef5d72b6eebb43dfea87d688c15c0bdd
+Status: Downloaded newer image for php:7.4-fpm-alpine3.12
+ ---> 41f8c8d8852a
+Step 2/11 : RUN apk add --no-cache openssl bash mysql-client nano nodejs npm
+ ---> Running in 286ae6add2e1
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/14) Installing readline (8.0.4-r0)
+(2/14) Installing bash (5.0.17-r0)
+Executing bash-5.0.17-r0.post-install
+(3/14) Installing mariadb-common (10.4.15-r0)
+(4/14) Installing libgcc (9.3.0-r2)
+(5/14) Installing libstdc++ (9.3.0-r2)
+(6/14) Installing mariadb-client (10.4.15-r0)
+(7/14) Installing mysql-client (10.4.15-r0)
+(8/14) Installing libmagic (5.38-r0)
+(9/14) Installing nano (4.9.3-r0)
+(10/14) Installing brotli-libs (1.0.9-r1)
+(11/14) Installing c-ares (1.16.1-r0)
+(12/14) Installing libuv (1.38.1-r0)
+(13/14) Installing nodejs (12.18.4-r0)
+(14/14) Installing npm (12.18.4-r0)
+Executing busybox-1.31.1-r19.trigger
+OK: 109 MiB in 45 packages
+Removing intermediate container 286ae6add2e1
+ ---> d4538999943e
+Step 3/11 : RUN docker-php-ext-install pdo pdo_mysql
+ ---> Running in b58ffa381713
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/23) Installing m4 (1.4.18-r1)
+(2/23) Installing libbz2 (1.0.8-r1)
+(3/23) Installing perl (5.30.3-r0)
+(4/23) Installing autoconf (2.69-r2)
+(5/23) Installing pkgconf (1.7.2-r0)
+(6/23) Installing dpkg-dev (1.20.0-r0)
+(7/23) Installing dpkg (1.20.0-r0)
+(8/23) Installing file (5.38-r0)
+(9/23) Installing binutils (2.34-r1)
+(10/23) Installing gmp (6.2.0-r0)
+(11/23) Installing isl (0.18-r0)
+(12/23) Installing libgomp (9.3.0-r2)
+(13/23) Installing libatomic (9.3.0-r2)
+(14/23) Installing libgphobos (9.3.0-r2)
+(15/23) Installing mpfr4 (4.0.2-r4)
+(16/23) Installing mpc1 (1.1.0-r1)
+(17/23) Installing gcc (9.3.0-r2)
+(18/23) Installing musl-dev (1.1.24-r9)
+(19/23) Installing libc-dev (0.7.2-r3)
+(20/23) Installing g++ (9.3.0-r2)
+(21/23) Installing make (4.3-r0)
+(22/23) Installing re2c (1.3-r1)
+(23/23) Installing .phpize-deps (20201023.180728)
+Executing busybox-1.31.1-r19.trigger
+OK: 344 MiB in 68 packages
+Configuring for:
+PHP Api Version:         20190902
+Zend Module Api No:      20190902
+Zend Extension Api No:   320190902
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ISO C89... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20190902
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking whether to enable PDO support... yes, shared
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo/pdo.c -o pdo.lo 
+mkdir .libs
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo.c  -fPIC -DPIC -o .libs/pdo.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo/pdo_dbh.c -o pdo_dbh.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_dbh.c  -fPIC -DPIC -o .libs/pdo_dbh.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo/pdo_stmt.c -o pdo_stmt.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_stmt.c  -fPIC -DPIC -o .libs/pdo_stmt.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo/pdo_sql_parser.c -o pdo_sql_parser.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_sql_parser.c  -fPIC -DPIC -o .libs/pdo_sql_parser.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc  -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo/pdo_sqlstate.c -o pdo_sqlstate.lo 
+ cc -I. -I/usr/src/php/ext/pdo -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_sqlstate.c  -fPIC -DPIC -o .libs/pdo_sqlstate.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -Wl,-O1 -pie  -o pdo.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/pdo/modules  pdo.lo pdo_dbh.lo pdo_stmt.lo pdo_sql_parser.lo pdo_sqlstate.lo 
+cc -shared  .libs/pdo.o .libs/pdo_dbh.o .libs/pdo_stmt.o .libs/pdo_sql_parser.o .libs/pdo_sqlstate.o   -Wl,-O1 -Wl,-soname -Wl,pdo.so -o .libs/pdo.so
+creating pdo.la
+(cd .libs && rm -f pdo.la && ln -s ../pdo.la pdo.la)
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=install cp ./pdo.la /usr/src/php/ext/pdo/modules
+cp ./.libs/pdo.so /usr/src/php/ext/pdo/modules/pdo.so
+cp ./.libs/pdo.lai /usr/src/php/ext/pdo/modules/pdo.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/pdo/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/pdo/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20190902/
+Installing header files:          /usr/local/include/php/
+Installing PDO headers:           /usr/local/include/php/ext/pdo/
+[91m
+[0m[91mwarning: pdo (pdo.so) is already loaded!
+[0m[91m
+[0mfind . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+Configuring for:
+PHP Api Version:         20190902
+Zend Module Api No:      20190902
+Zend Extension Api No:   320190902
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ISO C89... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20190902
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking for MySQL support for PDO... yes, shared
+checking for the location of libz... no
+checking for MySQL UNIX socket location... 
+checking for PDO includes... /usr/local/include/php/ext
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo 
+mkdir .libs
+ cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo_mysql/mysql_driver.c -o mysql_driver.lo 
+ cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo_mysql/mysql_driver.c  -fPIC -DPIC -o .libs/mysql_driver.o
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -c /usr/src/php/ext/pdo_mysql/mysql_statement.c -o mysql_statement.lo 
+ cc -I/usr/local/include/php/ext -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/src/php/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo_mysql/mysql_statement.c  -fPIC -DPIC -o .libs/mysql_statement.o
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/src/php/ext/pdo_mysql/include -I/usr/src/php/ext/pdo_mysql/main -I/usr/src/php/ext/pdo_mysql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -Wl,-O1 -pie  -o pdo_mysql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/pdo_mysql/modules  pdo_mysql.lo mysql_driver.lo mysql_statement.lo 
+cc -shared  .libs/pdo_mysql.o .libs/mysql_driver.o .libs/mysql_statement.o   -Wl,-O1 -Wl,-soname -Wl,pdo_mysql.so -o .libs/pdo_mysql.so
+creating pdo_mysql.la
+(cd .libs && rm -f pdo_mysql.la && ln -s ../pdo_mysql.la pdo_mysql.la)
+/bin/sh /usr/src/php/ext/pdo_mysql/libtool --mode=install cp ./pdo_mysql.la /usr/src/php/ext/pdo_mysql/modules
+cp ./.libs/pdo_mysql.so /usr/src/php/ext/pdo_mysql/modules/pdo_mysql.so
+cp ./.libs/pdo_mysql.lai /usr/src/php/ext/pdo_mysql/modules/pdo_mysql.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/pdo_mysql/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/pdo_mysql/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20190902/
+find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+[91mWARNING: [0m[91mIgnoring APKINDEX.2c4ac24e.tar.gz: No such file or directory[0m[91m
+[0m[91mWARNING: [0m[91mIgnoring APKINDEX.40a3604f.tar.gz: No such file or directory[0m[91m
+[0m(1/23) Purging .phpize-deps (20201023.180728)
+(2/23) Purging autoconf (2.69-r2)
+(3/23) Purging m4 (1.4.18-r1)
+(4/23) Purging dpkg-dev (1.20.0-r0)
+(5/23) Purging perl (5.30.3-r0)
+(6/23) Purging dpkg (1.20.0-r0)
+(7/23) Purging file (5.38-r0)
+(8/23) Purging g++ (9.3.0-r2)
+(9/23) Purging gcc (9.3.0-r2)
+(10/23) Purging binutils (2.34-r1)
+(11/23) Purging libatomic (9.3.0-r2)
+(12/23) Purging libgomp (9.3.0-r2)
+(13/23) Purging libgphobos (9.3.0-r2)
+(14/23) Purging libc-dev (0.7.2-r3)
+(15/23) Purging musl-dev (1.1.24-r9)
+(16/23) Purging make (4.3-r0)
+(17/23) Purging pkgconf (1.7.2-r0)
+(18/23) Purging re2c (1.3-r1)
+(19/23) Purging libbz2 (1.0.8-r1)
+(20/23) Purging isl (0.18-r0)
+(21/23) Purging mpc1 (1.1.0-r1)
+(22/23) Purging mpfr4 (4.0.2-r4)
+(23/23) Purging gmp (6.2.0-r0)
+Executing busybox-1.31.1-r19.trigger
+OK: 109 MiB in 45 packages
+Removing intermediate container b58ffa381713
+ ---> b0e4aeb3cd73
+Step 4/11 : RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ ---> Running in d1c696f33c98
+All settings correct for using Composer
+Downloading...
+
+Composer (version 1.10.15) successfully installed to: /usr/local/bin/composer
+Use it: php /usr/local/bin/composer
+
+Removing intermediate container d1c696f33c98
+ ---> 6f6c617b6d5b
+Step 5/11 : ENV DOCKERIZE_VERSION v0.6.1
+ ---> Running in 0cec5080cead
+Removing intermediate container 0cec5080cead
+ ---> 1010e19e6367
+Step 6/11 : RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz     && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+ ---> Running in ccd959b41a82
+[91mConnecting to github.com (140.82.112.3:443)
+[0m[91mConnecting to github-production-release-asset-2e65be.s3.amazonaws.com (52.217.33.252:443[0m[91m)
+[0m[91msaving to 'dockerize-alpine-linux-amd64-v0.6.1.tar.gz'
+[0m[91mdockerize-alpine-lin [0m[91m  7% [0m[91m|**                              | [0m[91m 220k[0m[91m  0:00:12 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m100% [0m[91m|********************************| [0m[91m2935k[0m[91m  0:00:00 ETA[0m[91m
+[0m[91m'dockerize-alpine-linux-amd64-v0.6.1.tar.gz' saved
+[0mdockerize
+Removing intermediate container ccd959b41a82
+ ---> 50d24b50c6df
+Step 7/11 : WORKDIR /var/www
+ ---> Running in 7bac316db6ca
+Removing intermediate container 7bac316db6ca
+ ---> 4e84c3697521
+Step 8/11 : RUN rm -rf /var/www/html
+ ---> Running in 2e0db9042dd1
+Removing intermediate container 2e0db9042dd1
+ ---> e14169b9765a
+Step 9/11 : RUN ln -s public html
+ ---> Running in e7fd8cfc9e0b
+Removing intermediate container e7fd8cfc9e0b
+ ---> 266067a4ead2
+Step 10/11 : EXPOSE 9000
+ ---> Running in 315035755df9
+Removing intermediate container 315035755df9
+ ---> 9a641edb92a8
+Step 11/11 : ENTRYPOINT ["php-fpm"]
+ ---> Running in aad3efdd375a
+Removing intermediate container aad3efdd375a
+ ---> a7acbb3e395c
+
+Successfully built a7acbb3e395c
+Successfully tagged test_app:latest
+Building nginx
+Step 1/6 : FROM nginx:1.19.2-alpine
+1.19.2-alpine: Pulling from library/nginx
+Digest: sha256:a97eb9ecc708c8aa715ccfb5e9338f5456e4b65575daf304f108301f3b497314
+Status: Downloaded newer image for nginx:1.19.2-alpine
+ ---> 6f715d38cfe0
+Step 2/6 : RUN apk add --no-cache openssl
+ ---> Running in 2d143c7cfe32
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing openssl (1.1.1g-r0)
+Executing busybox-1.31.1-r16.trigger
+OK: 25 MiB in 43 packages
+Removing intermediate container 2d143c7cfe32
+ ---> 5c22381356a6
+Step 3/6 : RUN rm /etc/nginx/conf.d/default.conf
+ ---> Running in d7b7075a00a3
+Removing intermediate container d7b7075a00a3
+ ---> 95334168b538
+Step 4/6 : ENV DOCKERIZE_VERSION v0.6.1
+ ---> Running in bcb75f1d9014
+Removing intermediate container bcb75f1d9014
+ ---> 8220424368c9
+Step 5/6 : RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz     && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+ ---> Running in c7cea6dfa025
+[91mConnecting to github.com (140.82.114.3:443)
+[0m[91mConnecting to github-production-release-asset-2e65be.s3.amazonaws.com (52.216.170.171:443)
+[0m[91msaving to 'dockerize-alpine-linux-amd64-v0.6.1.tar.gz'
+[0m[91mdockerize-alpine-lin [0m[91m  1% [0m[91m|                                | [0m[91m34336[0m[91m  0:01:26 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 38% [0m[91m|************                    | [0m[91m1138k[0m[91m  0:00:03 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 61% [0m[91m|*******************             | [0m[91m1818k[0m[91m  0:00:01 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 76% [0m[91m|************************        | [0m[91m2243k[0m[91m  0:00:01 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 76% [0m[91m|************************        | [0m[91m2243k[0m[91m  0:00:01 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 77% [0m[91m|************************        | [0m[91m2260k[0m[91m  0:00:01 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 82% [0m[91m|**************************      | [0m[91m2413k[0m[91m  0:00:01 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 88% [0m[91m|****************************    | [0m[91m2583k[0m[91m  0:00:01 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m 94% [0m[91m|******************************  | [0m[91m2787k[0m[91m  0:00:00 ETA[0m[91m
+[0m[91mdockerize-alpine-lin [0m[91m100% [0m[91m|********************************| [0m[91m2935k[0m[91m  0:00:00 ETA[0m[91m
+[0m[91m'dockerize-alpine-linux-amd64-v0.6.1.tar.gz' saved
+[0mdockerize
+Removing intermediate container c7cea6dfa025
+ ---> 14b23bcaccb7
+Step 6/6 : WORKDIR /var/www
+ ---> Running in c5f495c77885
+Removing intermediate container c5f495c77885
+ ---> e816282e3ae3
+
+Successfully built e816282e3ae3
+Successfully tagged test_nginx:latest
+Creating test_redis_1 ... 
+Creating db           ... 
+[2A[2KCreating test_redis_1 ... [32mdone[0m[2B[1A[2KCreating db           ... [32mdone[0m[1BCreating app          ... 
+[1A[2KCreating app          ... [32mdone[0m[1BCreating nginx        ... 
+[1A[2KCreating nginx        ... [32mdone[0m[1B
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test port 8000)
+[Pipeline] timeout
+Timeout set to expire in 6 min 0 sec
+[Pipeline] {
+[Pipeline] waitUntil
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: http://host.docker.internal:8000
+Sending request to url: http://host.docker.internal:8000
+Treating UnknownHostException(host.docker.internal: Name or service not known) as 404 Not Found
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+Cancelling nested steps due to timeout
+[Pipeline] // waitUntil
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Show welcome content)
+Stage "Show welcome content" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check migrations)
+Stage "Check migrations" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] dir
+Running in /tmp/build/test
+[Pipeline] {
+[Pipeline] sh
++ docker-compose logs
+Attaching to nginx, app, db, test_redis_1
+[36mapp      |[0m 2020/10/23 18:10:20 unable to stat ./.docker/app/.env, error: stat ./.docker/app/.env: no such file or directory
+[33mdb       |[0m 2020-10-23 18:10:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.32-1debian10 started.
+[33mdb       |[0m 2020-10-23 18:10:19+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+[33mdb       |[0m 2020-10-23 18:10:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.32-1debian10 started.
+[33mdb       |[0m 2020-10-23 18:10:19+00:00 [Note] [Entrypoint]: Initializing database files
+[33mdb       |[0m 2020-10-23T18:10:19.977018Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33mdb       |[0m 2020-10-23T18:10:20.252459Z 0 [Warning] InnoDB: New log files created, LSN=45790
+[33mdb       |[0m 2020-10-23T18:10:20.324342Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+[33mdb       |[0m 2020-10-23T18:10:20.473486Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 0331cc97-155b-11eb-90dc-0242ac120002.
+[33mdb       |[0m 2020-10-23T18:10:20.509578Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+[33mdb       |[0m 2020-10-23T18:10:21.337017Z 0 [Warning] CA certificate ca.pem is self signed.
+[33mdb       |[0m 2020-10-23T18:10:21.488496Z 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+[33mdb       |[0m 2020-10-23 18:10:26+00:00 [Note] [Entrypoint]: Database files initialized
+[33mdb       |[0m 2020-10-23 18:10:26+00:00 [Note] [Entrypoint]: Starting temporary server
+[33mdb       |[0m 2020-10-23 18:10:26+00:00 [Note] [Entrypoint]: Waiting for server startup
+[33mdb       |[0m 2020-10-23T18:10:27.176675Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33mdb       |[0m 2020-10-23T18:10:27.178622Z 0 [Note] mysqld (mysqld 5.7.32) starting as process 78 ...
+[33mdb       |[0m 2020-10-23T18:10:27.181343Z 0 [Note] InnoDB: PUNCH HOLE support available
+[33mdb       |[0m 2020-10-23T18:10:27.181438Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+[33mdb       |[0m 2020-10-23T18:10:27.181482Z 0 [Note] InnoDB: Uses event mutexes
+[33mdb       |[0m 2020-10-23T18:10:27.181522Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+[33mdb       |[0m 2020-10-23T18:10:27.181562Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+[33mdb       |[0m 2020-10-23T18:10:27.181754Z 0 [Note] InnoDB: Number of pools: 1
+[33mdb       |[0m 2020-10-23T18:10:27.181868Z 0 [Note] InnoDB: Using CPU crc32 instructions
+[33mdb       |[0m 2020-10-23T18:10:27.183459Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+[33mdb       |[0m 2020-10-23T18:10:27.190935Z 0 [Note] InnoDB: Completed initialization of buffer pool
+[33mdb       |[0m 2020-10-23T18:10:27.193822Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+[33mdb       |[0m 2020-10-23T18:10:27.210374Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+[33mdb       |[0m 2020-10-23T18:10:27.230689Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+[33mdb       |[0m 2020-10-23T18:10:27.230838Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+[33mdb       |[0m 2020-10-23T18:10:27.269787Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+[33mdb       |[0m 2020-10-23T18:10:27.270367Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+[33mdb       |[0m 2020-10-23T18:10:27.270403Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+[33mdb       |[0m 2020-10-23T18:10:27.270589Z 0 [Note] InnoDB: Waiting for purge to start
+[33mdb       |[0m 2020-10-23T18:10:27.322277Z 0 [Note] InnoDB: 5.7.32 started; log sequence number 2746702
+[33mdb       |[0m 2020-10-23T18:10:27.323045Z 0 [Note] Plugin 'FEDERATED' is disabled.
+[33mdb       |[0m 2020-10-23T18:10:27.330909Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+[33mdb       |[0m 2020-10-23T18:10:27.332866Z 0 [Note] InnoDB: Buffer pool(s) load completed at 201023 18:10:27
+[33mdb       |[0m 2020-10-23T18:10:27.335896Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+[33mdb       |[0m 2020-10-23T18:10:27.335984Z 0 [Note] Skipping generation of SSL certificates as certificate files are present in data directory.
+[33mdb       |[0m 2020-10-23T18:10:27.336874Z 0 [Warning] CA certificate ca.pem is self signed.
+[33mdb       |[0m 2020-10-23T18:10:27.336987Z 0 [Note] Skipping generation of RSA key pair as key files are present in data directory.
+[33mdb       |[0m 2020-10-23T18:10:27.345833Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[33mdb       |[0m 2020-10-23T18:10:27.353043Z 0 [Note] Event Scheduler: Loaded 0 events
+[33mdb       |[0m 2020-10-23T18:10:27.356408Z 0 [Note] mysqld: ready for connections.
+[33mdb       |[0m Version: '5.7.32'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
+[33mdb       |[0m 2020-10-23 18:10:28+00:00 [Note] [Entrypoint]: Temporary server started.
+[33mdb       |[0m Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+[33mdb       |[0m Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+[33mdb       |[0m Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+[33mdb       |[0m Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+[33mdb       |[0m 2020-10-23 18:10:30+00:00 [Note] [Entrypoint]: Creating database laravel
+[33mdb       |[0m 
+[33mdb       |[0m 2020-10-23 18:10:30+00:00 [Note] [Entrypoint]: Stopping temporary server
+[33mdb       |[0m 2020-10-23T18:10:30.124414Z 0 [Note] Giving 0 client threads a chance to die gracefully
+[33mdb       |[0m 2020-10-23T18:10:30.124528Z 0 [Note] Shutting down slave threads
+[33mdb       |[0m 2020-10-23T18:10:30.124570Z 0 [Note] Forcefully disconnecting 0 remaining clients
+[33mdb       |[0m 2020-10-23T18:10:30.124607Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+[33mdb       |[0m 2020-10-23T18:10:30.124734Z 0 [Note] Binlog end
+[33mdb       |[0m 2020-10-23T18:10:30.125337Z 0 [Note] Shutting down plugin 'ngram'
+[33mdb       |[0m 2020-10-23T18:10:30.125412Z 0 [Note] Shutting down plugin 'partition'
+[33mdb       |[0m 2020-10-23T18:10:30.125456Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+[33mdb       |[0m 2020-10-23T18:10:30.125602Z 0 [Note] Shutting down plugin 'ARCHIVE'
+[33mdb       |[0m 2020-10-23T18:10:30.125639Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+[33mdb       |[0m 2020-10-23T18:10:30.125690Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+[33mdb       |[0m 2020-10-23T18:10:30.125727Z 0 [Note] Shutting down plugin 'MyISAM'
+[33mdb       |[0m 2020-10-23T18:10:30.125766Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+[33mdb       |[0m 2020-10-23T18:10:30.125803Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+[33mdb       |[0m 2020-10-23T18:10:30.125839Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+[33mdb       |[0m 2020-10-23T18:10:30.125875Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+[33mdb       |[0m 2020-10-23T18:10:30.125909Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+[33mdb       |[0m 2020-10-23T18:10:30.126038Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+[33mdb       |[0m 2020-10-23T18:10:30.126075Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+[33mdb       |[0m 2020-10-23T18:10:30.126111Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+[33mdb       |[0m 2020-10-23T18:10:30.126146Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+[33mdb       |[0m 2020-10-23T18:10:30.126181Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+[33mdb       |[0m 2020-10-23T18:10:30.126216Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+[33mdb       |[0m 2020-10-23T18:10:30.126258Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+[33mdb       |[0m 2020-10-23T18:10:30.126307Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+[33mdb       |[0m 2020-10-23T18:10:30.126343Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+[33mdb       |[0m 2020-10-23T18:10:30.126377Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+[33mdb       |[0m 2020-10-23T18:10:30.126412Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+[33mdb       |[0m 2020-10-23T18:10:30.126446Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+[33mdb       |[0m 2020-10-23T18:10:30.126480Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+[32mnginx    |[0m 2020/10/23 18:10:21 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:21 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:22 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:23 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:25 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:28 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:32 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:39 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:10:52 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:11:18 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:12:10 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:13:11 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:14:11 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:15:12 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[32mnginx    |[0m 2020/10/23 18:16:12 unable to stat ./.docker/nginx/nginx.conf, error: stat ./.docker/nginx/nginx.conf: no such file or directory
+[35mredis_1  |[0m 1:C 23 Oct 2020 18:10:19.414 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[35mredis_1  |[0m 1:C 23 Oct 2020 18:10:19.415 # Redis version=6.0.8, bits=64, commit=00000000, modified=0, pid=1, just started
+[35mredis_1  |[0m 1:C 23 Oct 2020 18:10:19.415 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[35mredis_1  |[0m 1:M 23 Oct 2020 18:10:19.421 * Running mode=standalone, port=6379.
+[35mredis_1  |[0m 1:M 23 Oct 2020 18:10:19.421 # Server initialized
+[35mredis_1  |[0m 1:M 23 Oct 2020 18:10:19.421 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[35mredis_1  |[0m 1:M 23 Oct 2020 18:10:19.422 * Ready to accept connections
+[33mdb       |[0m 2020-10-23T18:10:30.126515Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+[33mdb       |[0m 2020-10-23T18:10:30.126549Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+[33mdb       |[0m 2020-10-23T18:10:30.126583Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+[33mdb       |[0m 2020-10-23T18:10:30.126619Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+[33mdb       |[0m 2020-10-23T18:10:30.126654Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+[33mdb       |[0m 2020-10-23T18:10:30.126794Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+[33mdb       |[0m 2020-10-23T18:10:30.126837Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+[33mdb       |[0m 2020-10-23T18:10:30.126871Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+[33mdb       |[0m 2020-10-23T18:10:30.126905Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+[33mdb       |[0m 2020-10-23T18:10:30.126940Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+[33mdb       |[0m 2020-10-23T18:10:30.126979Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+[33mdb       |[0m 2020-10-23T18:10:30.127014Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+[33mdb       |[0m 2020-10-23T18:10:30.127060Z 0 [Note] Shutting down plugin 'InnoDB'
+[33mdb       |[0m 2020-10-23T18:10:30.127136Z 0 [Note] InnoDB: FTS optimize thread exiting.
+[33mdb       |[0m 2020-10-23T18:10:30.127291Z 0 [Note] InnoDB: Starting shutdown...
+[33mdb       |[0m 2020-10-23T18:10:30.228464Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+[33mdb       |[0m 2020-10-23T18:10:30.230622Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 201023 18:10:30
+[33mdb       |[0m 2020-10-23T18:10:30.859356Z 0 [Note] InnoDB: Shutdown completed; log sequence number 12605029
+[33mdb       |[0m 2020-10-23T18:10:30.860814Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+[33mdb       |[0m 2020-10-23T18:10:30.860920Z 0 [Note] Shutting down plugin 'MEMORY'
+[33mdb       |[0m 2020-10-23T18:10:30.860984Z 0 [Note] Shutting down plugin 'CSV'
+[33mdb       |[0m 2020-10-23T18:10:30.861042Z 0 [Note] Shutting down plugin 'sha256_password'
+[33mdb       |[0m 2020-10-23T18:10:30.861098Z 0 [Note] Shutting down plugin 'mysql_native_password'
+[33mdb       |[0m 2020-10-23T18:10:30.861273Z 0 [Note] Shutting down plugin 'binlog'
+[33mdb       |[0m 2020-10-23T18:10:30.862420Z 0 [Note] mysqld: Shutdown complete
+[33mdb       |[0m 
+[33mdb       |[0m 2020-10-23 18:10:31+00:00 [Note] [Entrypoint]: Temporary server stopped
+[33mdb       |[0m 
+[33mdb       |[0m 2020-10-23 18:10:31+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+[33mdb       |[0m 
+[33mdb       |[0m 2020-10-23T18:10:31.322331Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33mdb       |[0m 2020-10-23T18:10:31.323318Z 0 [Note] mysqld (mysqld 5.7.32) starting as process 1 ...
+[33mdb       |[0m 2020-10-23T18:10:31.325222Z 0 [Note] InnoDB: PUNCH HOLE support available
+[33mdb       |[0m 2020-10-23T18:10:31.325293Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+[33mdb       |[0m 2020-10-23T18:10:31.325335Z 0 [Note] InnoDB: Uses event mutexes
+[33mdb       |[0m 2020-10-23T18:10:31.325375Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+[33mdb       |[0m 2020-10-23T18:10:31.325413Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+[33mdb       |[0m 2020-10-23T18:10:31.325594Z 0 [Note] InnoDB: Number of pools: 1
+[33mdb       |[0m 2020-10-23T18:10:31.325708Z 0 [Note] InnoDB: Using CPU crc32 instructions
+[33mdb       |[0m 2020-10-23T18:10:31.326594Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+[33mdb       |[0m 2020-10-23T18:10:31.332084Z 0 [Note] InnoDB: Completed initialization of buffer pool
+[33mdb       |[0m 2020-10-23T18:10:31.333497Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+[33mdb       |[0m 2020-10-23T18:10:31.345204Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+[33mdb       |[0m 2020-10-23T18:10:31.362227Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+[33mdb       |[0m 2020-10-23T18:10:31.362409Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+[33mdb       |[0m 2020-10-23T18:10:31.379576Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+[33mdb       |[0m 2020-10-23T18:10:31.380167Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+[33mdb       |[0m 2020-10-23T18:10:31.380222Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+[33mdb       |[0m 2020-10-23T18:10:31.380431Z 0 [Note] InnoDB: Waiting for purge to start
+[33mdb       |[0m 2020-10-23T18:10:31.437123Z 0 [Note] InnoDB: 5.7.32 started; log sequence number 12605029
+[33mdb       |[0m 2020-10-23T18:10:31.437517Z 0 [Note] Plugin 'FEDERATED' is disabled.
+[33mdb       |[0m 2020-10-23T18:10:31.446902Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+[33mdb       |[0m 2020-10-23T18:10:31.456965Z 0 [Note] InnoDB: Buffer pool(s) load completed at 201023 18:10:31
+[33mdb       |[0m 2020-10-23T18:10:31.489356Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+[33mdb       |[0m 2020-10-23T18:10:31.489590Z 0 [Note] Skipping generation of SSL certificates as certificate files are present in data directory.
+[33mdb       |[0m 2020-10-23T18:10:31.491365Z 0 [Warning] CA certificate ca.pem is self signed.
+[33mdb       |[0m 2020-10-23T18:10:31.491421Z 0 [Note] Skipping generation of RSA key pair as key files are present in data directory.
+[33mdb       |[0m 2020-10-23T18:10:31.494596Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+[33mdb       |[0m 2020-10-23T18:10:31.494683Z 0 [Note] IPv6 is available.
+[33mdb       |[0m 2020-10-23T18:10:31.498183Z 0 [Note]   - '::' resolves to '::';
+[33mdb       |[0m 2020-10-23T18:10:31.498268Z 0 [Note] Server socket created on IP: '::'.
+[33mdb       |[0m 2020-10-23T18:10:31.507169Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[33mdb       |[0m 2020-10-23T18:10:31.545134Z 0 [Note] Event Scheduler: Loaded 0 events
+[33mdb       |[0m 2020-10-23T18:10:31.563390Z 0 [Note] mysqld: ready for connections.
+[33mdb       |[0m Version: '5.7.32'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+[Pipeline] sh
++ wc -l
++ docker ps -a -q
++ num_containers=5
++ [ 5 -gt 1 ]
++ grep -v jenkins
++ docker ps -a
++ awk NR>1 {print $1}
++ docker stop cebdd6b36046 e93452812d9a 33c2836173e6 757daf184f69
+cebdd6b36046
+e93452812d9a
+33c2836173e6
+757daf184f69
++ awk NR>1 {print $1}
++ grep -v jenkins
++ docker ps -a
++ docker rm cebdd6b36046 e93452812d9a 33c2836173e6 757daf184f69
+cebdd6b36046
+e93452812d9a
+33c2836173e6
+757daf184f69
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Timeout has been exceeded
+Finished: ABORTED

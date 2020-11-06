@@ -1,0 +1,164 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.jvnet.hudson.plugins</groupId>
+    <artifactId>analysis-pom</artifactId>
+    <version>4.2.0</version>
+    <relativePath />
+  </parent>
+
+  <artifactId>bootstrap4-api</artifactId>
+  <groupId>io.jenkins.plugins</groupId>
+  <packaging>hpi</packaging>
+  <name>Bootstrap 4 API Plugin</name>
+  <version>4.5.2-1</version>
+
+  <url>https://github.com/jenkinsci/bootstrap4-api-plugin</url>
+
+  <description>Provides Bootstrap 4 for Jenkins plugins.</description>
+
+  <properties>
+    <revision>4.5.2-1</revision>
+    <changelist>-SNAPSHOT</changelist>
+    <bootstrap.version>4.5.2</bootstrap.version>
+
+    <module.name>${project.groupId}.bootstrap4</module.name>
+
+    <jquery3-api.version>3.5.1-1</jquery3-api.version>
+    <popper-api.version>1.16.0-6</popper-api.version>
+    <font-awesome-api.version>5.14.0-1</font-awesome-api.version>
+
+    <commons.lang.version>3.9</commons.lang.version>
+
+  </properties>
+
+  <licenses>
+    <license>
+      <name>MIT license</name>
+      <comments>All source code is under the MIT license.</comments>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Ullrich Hafner</name>
+      <id>uhafner</id>
+      <email>ullrich.hafner@gmail.com</email>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>bootstrap</artifactId>
+      <version>${bootstrap.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- WebJars Dependencies - bundled as API plugins -->
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>popper-api</artifactId>
+      <version>${popper-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>jquery3-api</artifactId>
+      <version>${jquery3-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>font-awesome-api</artifactId>
+      <version>${font-awesome-api.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>1.10.0</version>
+        <executions>
+          <execution>
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <nodeVersion>v14.9.0</nodeVersion>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm build</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>compile</phase>
+            <configuration>
+              <arguments>run build</arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/${project.artifactId}/js</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/node_modules/bootstrap/dist/js/</directory>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <scm>
+    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+    <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <tag>v4.5.2-1</tag>
+  </scm>
+
+  <repositories>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>
+

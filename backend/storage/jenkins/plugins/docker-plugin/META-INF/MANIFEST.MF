@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: peter
+Build-Jdk: 1.8.0_101
+Extension-Name: docker-plugin
+Specification-Title: Provide Cloud Provisioning and other Docker featu
+ res
+Implementation-Title: docker-plugin
+Implementation-Version: 1.2.1
+Group-Id: io.jenkins.docker
+Short-Name: docker-plugin
+Long-Name: Docker plugin
+Url: https://github.com/jenkinsci/docker-plugin
+Compatible-Since-Version: 0.17
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.2.1
+Hudson-Version: 2.60.3
+Jenkins-Version: 2.60.3
+Plugin-Dependencies: workflow-api:2.23.1;resolution:=optional,workflow
+ -cps:2.41;resolution:=optional,workflow-durable-task-step:2.17;resolu
+ tion:=optional,workflow-job:2.12.2;resolution:=optional,workflow-step
+ -api:2.14;resolution:=optional,workflow-support:2.16;resolution:=opti
+ onal,apache-httpcomponents-client-4-api:4.5.3-2.0,bouncycastle-api:2.
+ 16.2,docker-commons:1.9,docker-java-api:3.1.5,durable-task:1.16,scrip
+ t-security:1.36;resolution:=optional,ssh-slaves:1.22,token-macro:2.3
+Plugin-Developers: Nigel Magnay:magnayn:,Nicolas De Loof:ndeloof:,Pete
+ r Darton:pjdarton:
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/docker-plugin
+

@@ -1,0 +1,2 @@
+{"github_link":"tste","branch":"master","laravel_folder":"."}
+Machine has been successfully cloned as "Alpine 3 Clone - 2020-10-27T01-37-54.222Z"
